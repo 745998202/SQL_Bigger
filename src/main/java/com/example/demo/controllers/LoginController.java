@@ -7,45 +7,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.WebSession;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 
 @Controller
 public class LoginController {
     //获取数据库连接
-    private static Connection getConn() {
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/SMP";
-        String username = "root";
-        String password = "Yaomengjie2";
-        Connection conn = null;
-        try {
-            Class.forName(driver); //classLoader,加载对应驱动
-            conn =  DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return conn;
-    }
-    public void testConnectSQL(){
-        Connection conn = getConn();//获取数据库连接
-        String sql = "exec SQLCREATETABLE";
-        try {
-            CallableStatement cst=conn.prepareCall(sql);
-            ResultSet rs = cst.executeQuery();
-            cst.close();
-            conn.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-    @PostMapping("/index")
-    public String login(@ModelAttribute UserBean us,WebRequest webRequest){
 
-        Connection conn = getConn();//获取数据库连接
+    @PostMapping("/index")
+    public String login(@ModelAttribute UserBean us, WebRequest webRequest, HttpSession session){
+        Connection conn = GetConnection.getConn();//获取数据库连接
         String sql = "select type from account where account = '"+us.getAccount() +"' and password = '"+ us.getPassword()+"'";
         int type = 0;
         try {
@@ -53,6 +27,27 @@ public class LoginController {
             ResultSet resultSet = pre.executeQuery();//执行SQL语句，返回结果给ResultSet
             if(resultSet.next()){
                 type = resultSet.getInt("type");
+                session.setAttribute("userType",type);
+            }
+            if(type == 1){//老师
+                sql = "select teacherno from account where account = '"+us.getAccount() +"' and password = '"+ us.getPassword()+"'";
+                pre = conn.prepareStatement(sql);
+                resultSet = pre.executeQuery();
+                String userNo;
+                if(resultSet.next()){
+                    userNo = resultSet.getString("teacherno");
+                    session.setAttribute("userNo",userNo);
+                }
+            }
+            if(type == 2){
+                sql = "select studentno from account where account = '"+us.getAccount() +"' and password = '"+ us.getPassword()+"'";
+                pre = conn.prepareStatement(sql);
+                resultSet = pre.executeQuery();
+                String userNo;
+                if(resultSet.next()){
+                    userNo = resultSet.getString("studentno");
+                    session.setAttribute("userNo",userNo);
+                }
             }
             pre.close();
             conn.close();

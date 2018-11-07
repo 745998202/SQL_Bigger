@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th:="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 
 <meta charset="UTF-8">
@@ -42,7 +43,7 @@
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                </button>
-               <a href="index.html" class="navbar-brand"><i class="fa fa-magnet"></i></a>
+               <a th:href="@{/main}" class="navbar-brand"><i class="fa fa-magnet"></i></a>
           </div>
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-right">
@@ -92,13 +93,13 @@
                </div>
 
                <div class="col-md-4 col-sm-6">
-                    <a href="single-project.html">
+                    <a href="/teacherWorkList">
                          <div class="portfolio-thumb">
                               <img th:src="@{index/images/portfolio-img2.jpg}" class="img-responsive" alt="Portfolio"/>
                                    <div class="portfolio-overlay">
                                         <div class="portfolio-item">
-                                             <h3>任务批阅</h3>
-                                             <small>批阅已上传的任务</small>
+                                             <h3>任务查看</h3>
+                                             <small>查看已发布的任务</small>
                                         </div>
                                    </div>
                          </div>
@@ -106,7 +107,7 @@
                </div>
 
                <div class="col-md-4 col-sm-6">
-                    <a href="single-project.html">
+                    <a href="/teacherControlStudents">
                          <div class="portfolio-thumb">
                               <img th:src="@{index/images/portfolio-img3.jpg}" class="img-responsive" alt="Portfolio"/>
                                    <div class="portfolio-overlay">
@@ -125,7 +126,7 @@
                               <img th:src="@{index/images/portfolio-img4.jpg}" class="img-responsive" alt="Portfolio"/>
                                    <div class="portfolio-overlay">
                                         <div class="portfolio-item">
-                                             <h3>Project Name</h3>
+                                             <h3>任务查看</h3>
                                              <small>Logo Design</small>
                                         </div>
                                    </div>

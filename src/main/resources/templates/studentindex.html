@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th:="http://www.thymeleaf.org">
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="UTF-8">
@@ -42,7 +43,7 @@
                 <span class="icon icon-bar"></span>
                 <span class="icon icon-bar"></span>
             </button>
-            <a href="index.html" class="navbar-brand"><i class="fa fa-magnet"></i></a>
+            <a th:href="@{/main}" class="navbar-brand"><i class="fa fa-magnet"></i></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
