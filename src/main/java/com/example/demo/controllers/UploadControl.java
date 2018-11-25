@@ -10,9 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UploadControl {
@@ -54,6 +54,26 @@ public class UploadControl {
                 cst.setString(6, userNo);
                 cst.execute();
                 cst.close();
+                sql = "select STUDENTNO from STUDENT , TEACHER where student.CLASSNO = TEACHER.CLASSNO and TEACHER.teacherno = '"+userNo+"'";
+                PreparedStatement pre = conn.prepareStatement(sql);
+                ResultSet res = pre.executeQuery();
+               ArrayList student_list = new ArrayList<String>();
+                while(res.next()){
+                    String new_student_no = res.getString("STUDENTNO");
+                    student_list.add(new_student_no);
+                }
+
+                for(int i = 0 ;i <student_list.size();i++){//循环将任务插入任务得分列表
+                    sql = "{call insertworkscore(?,?,?,?,?)}";
+                    cst = conn.prepareCall(sql);
+                    cst.setString(1,(String)student_list.get(i));
+                    cst.setString(2,userNo);
+                    cst.setInt(3,0);
+                    cst.setString(4,work.getWorkTitle());
+                    cst.setInt(5,0);//初始为未提交状态
+                    cst.execute();
+                    cst.close();
+                }
                 conn.close();
             }catch (SQLException e){
                 e.printStackTrace();

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class GetConnection {
     public static Connection getConn(){
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/SMP";
-        String username = "root";
-        String password = "Yaomengjie2";
+        String driver = "oracle.jdbc.driver.OracleDriver";
+        String url = "jdbc:oracle:thin:@//127.0.0.1:1521/ORACLE";
+        String username = "yaomenglong";
+        String password = "123456";
         Connection conn = null;
         try {
             Class.forName(driver); //classLoader,加载对应驱动

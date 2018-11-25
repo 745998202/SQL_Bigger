@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th:="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th:="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org">
 
     <head>
 
@@ -69,7 +70,7 @@
 			                        	<label class="sr-only" for="form-password">Password</label>
 			                        	<input type="password" name="form-password" th:field="*{password}" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
-                              没有账号？<a href="../注册页面/index.html">注册</a>
+                              没有账号？<a th:href="@{/register}">注册</a>
 			                        <button type="submit" class="btn">Sign in!</button>
 
 			                    </form>

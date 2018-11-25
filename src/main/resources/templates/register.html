@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>注册</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" th:href="@{http://fonts.googleapis.com/css?family=Roboto:400,100,300,500}"/>
+        <link rel="stylesheet" th:href="@{register/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{register/font-awesome/css/font-awesome.min.css}"/>
+		<link rel="stylesheet" th:href="@{register/css/form-elements.css}"/>
+        <link rel="stylesheet" th:href="@{register/css/style.css}"/>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script th:src="@{https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js}"></script>
+            <script th:src="@{https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js}"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" th:href="@{register/ico/favicon.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{register/ico/apple-touch-icon-144-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{register/ico/apple-touch-icon-114-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{register/ico/apple-touch-icon-72-precomposed.png}"/>
+        <link rel="apple-touch-icon-precomposed" th:href="@{register/ico/apple-touch-icon-57-precomposed.png}"/>
+
+    </head>
+
+    <body>
+
+        <!-- Top content -->
+        <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2 text">
+                            <h1><strong>注册</strong></h1>
+                            <div class="description">
+                            	<p>
+
+	                            加入我们
+                            	</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>注册你的信息</h3>
+                            		<p>以便我们更了解你</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-lock"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+			                    <form role="form" th:action="@{/registerPost}" method="post" th:object="${registerBean}" class="login-form">
+			                    	<div class="form-group">
+			                    		<label class="label label-info">姓名</label>
+			                        	<input type="text"th:field="*{name}" name="form-username" placeholder="你的名字..." class="form-username form-control" id="form-username">
+			                        </div>
+                              <div class="form-group">
+			                        	<label class="label label-info">班级名称</label>
+			                        	<input type="password" th:field="*{classname}"name="form-password" placeholder="班级名称" class="form-password form-control">
+			                        </div>
+                              <div class="form-group">
+			                        	<label class="label label-info">登陆密码</label>
+			                        	<input type="password"th:field="*{password}" name="form-password" placeholder="登陆密码..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">注册</button>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        	<h3>欢迎加入</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Javascript -->
+        <script th:src="@{register/js/jquery-1.11.1.min.js}"></script>
+        <script th:src="@{register/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{register/js/jquery.backstretch.min.js}"></script>
+        <script th:src="@{register/js/scripts.js}"></script>
+
+        <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 789px; width: 1423px; z-index: -999999; position: fixed;">
+            <img th:src="@{register/img/backgrounds/1.jpg}" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1423px; height: 948.667px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -79.8333px;"/>
+        </div>
+
+    </body>
+
+</html>

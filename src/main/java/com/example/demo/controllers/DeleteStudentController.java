@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.CallableStatement;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 
 @Controller
 public class DeleteStudentController {
+    @RequestMapping("/deleteStudent")
     public String deletStudent(@RequestParam("studentno") String studentno){
         Connection conn = GetConnection.getConn();
         String sql = "{call deleteStudent(?)}";
